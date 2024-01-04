@@ -1,0 +1,13 @@
+.categories{
+    background: #e1e1e2;
+    font-weight: bold;
+    cursor:pointer;
+}
+.categories:hover{
+    background: #fdfdfd;
+    transition:.3s;
+    color: orange;
+}
+/* .banner-bg{
+    background: #dfe6e9;
+} */

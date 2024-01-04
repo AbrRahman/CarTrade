@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{%load static%}
+{%block title%}
+ Home
+{%endblock%}
+
+{%block content%}
+{% comment %} top banner section {% endcomment %}
+<div style="background:#dfe6e9">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{% static 'images/image1.jpg' %}" class="w-100" alt="">
+      </div>
+      <div class="col-md-6">
+        <h1 class="mt-5">Unleash the Power of Easy Car Trading</h1>
+        <p>CarTrade, where every trade is a journey, and every journey is an adventure.
+           Experience seamless car trading that puts you in the driver's seat of your automotive dreams.</p>
+      </div>
+    </div>
+   </div>
+</div>
+
+
+<div class="container">
+  {% comment %} cetagories {% endcomment %}
+  <div class="d-flex justify-content-start align-items-center my-5">
+    <a class="p-3 border rounded categories text-decoration-none me-3" href={% url "car_brand" "all"%}>All</a>
+    {%if brands%}
+      {%for brand in brands%}
+      <a class="p-3 border rounded categories text-decoration-none me-3" href={% url "car_brand" brand.slug%}>{{brand.name}}</a>
+     {%endfor%}
+    {%endif%}
+  </div>
+
+  {% comment %} cars card {% endcomment %}
+   <h1 class='mb-3'>Tota Items: {{cars|length}}</h1>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {%if cars%}
+    {%for car in cars%}
+    <div class="col">
+      <div class="card">
+        <img src={{car.image.url}} class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Car Name: {{car.name}}</h5>
+          <p>Brand Name: {{car.brand.name}}</p>
+          <p class="card-text">Price: {{car.price}}</p>
+          <a href={%url "car_details" car.id %} class="btn btn-primary">View details</a>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+    {%endif%}
+    
+    {% comment %} image, price, and can filter cars by brand name {% endcomment %}
+  </div>
+
+
+</div>
+
+
+
+{%endblock%}
